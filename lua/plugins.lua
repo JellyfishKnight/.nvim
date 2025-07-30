@@ -12,7 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	"tanvirtin/monokai.nvim",
+	-- Themes
+
+    "tanvirtin/monokai.nvim",
+
+    -- Auto completions
+
     {
         "saghen/blink.cmp",
         -- optional: provides snippets for the snippet source
@@ -94,5 +99,27 @@ require("lazy").setup({
             signature = { enabled = true },
         },
         opts_extend = { "sources.default" },
-    }
+    },
+
+    -- LSP Manager
+
+    { "mason-org/mason.nvim", opts = {} },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {
+            ensure_installed = { "pylsp" },
+        }
+    },
+    {
+        "neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			lspconfig.pylsp.setup({})
+		end,
+    },
 })
