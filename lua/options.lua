@@ -85,5 +85,6 @@ opt.undofile = true
 opt.updatetime = 250
 
 -- 快捷键等待时间（毫秒）
--- 例如按下 leader 键后，等待 300ms 来输入下一个键
-opt.timeoutlen = 300
+-- 例如按下 leader 键后，等待多长时间来输入下一个键
+-- 设置为 1000ms (1秒) 给用户足够时间输入组合键
+opt.timeoutlen = 1000
