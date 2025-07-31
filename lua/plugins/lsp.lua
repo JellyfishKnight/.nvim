@@ -114,10 +114,11 @@ return {
                         loadOutDirsFromCheck = true,
                         runBuildScripts = true,
                     },
-                    checkOnSave = {
-                        allFeatures = true,
+                    checkOnSave = true,
+                    check = {
                         command = "clippy",
-                        extraArgs = { "--no-deps" }
+                        extraArgs = { "--no-deps" },
+                        allFeatures = true,
                     },
                     procMacro = {
                         enable = true,
@@ -126,6 +127,24 @@ return {
                                 "component",
                                 "server",
                             },
+                        },
+                    },
+                    -- 自动导入配置
+                    imports = {
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    -- 补全配置
+                    completion = {
+                        addCallArgumentSnippets = true,
+                        addCallParenthesis = true,
+                        postfix = {
+                            enable = true,
+                        },
+                        autoimport = {
+                            enable = true,
                         },
                     },
                 },
@@ -170,7 +189,7 @@ return {
         })
         
         -- TypeScript/JavaScript服务器配置
-        lspconfig.tsserver.setup({
+        lspconfig.ts_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })

@@ -23,6 +23,9 @@ require("lazy").setup({
     -- 编辑增强
     require("plugins.editing"),
     
+    -- AI代码助手
+    require("plugins.copilot"),
+    
     -- 终端集成
     require("plugins.terminal"),
 }, {

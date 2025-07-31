@@ -51,11 +51,26 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.abort(),
                 
-                -- 确认补全
-                ["<CR>"] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = false,
-                }),
+                -- 确认补全（支持自动导入）
+                ["<CR>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        local entry = cmp.get_selected_entry()
+                        if entry then
+                            cmp.confirm({
+                                behavior = cmp.ConfirmBehavior.Replace,
+                                select = false,
+                            })
+                            -- 如果是LSP补全项且有additionalTextEdits，自动应用（用于自动导入）
+                            if entry.source.name == "nvim_lsp" and entry.completion_item.additionalTextEdits then
+                                vim.lsp.util.apply_text_edits(entry.completion_item.additionalTextEdits, vim.api.nvim_get_current_buf(), "utf-8")
+                            end
+                        else
+                            fallback()
+                        end
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
                 
                 -- Tab键智能行为
                 ["<Tab>"] = cmp.mapping(function(fallback)
