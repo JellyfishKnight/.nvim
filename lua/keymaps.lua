@@ -54,6 +54,20 @@ keymap("v", "<", "<gv", { desc = "向左缩进并保持选择" })
 
 keymap("v", ">", ">gv", { desc = "向右缩进并保持选择" })
 
+-- ==================== Tab键缩进功能 ====================
+-- 使用Tab和Shift+Tab进行缩进操作，更符合IDE使用习惯
+
+-- 可视模式下使用Tab进行缩进（针对选中的所有行）
+keymap("v", "<Tab>", ">gv", { desc = "Tab键对选中行向右缩进并保持选择" })
+keymap("v", "<S-Tab>", "<gv", { desc = "Shift+Tab对选中行向左缩进并保持选择" })
+
+-- 插入模式下的Tab行为（保持默认Tab功能，但添加Shift+Tab反缩进）
+keymap("i", "<S-Tab>", "<C-d>", { desc = "插入模式下Shift+Tab反缩进" })
+
+-- 普通模式下的Tab缩进（针对当前行）
+keymap("n", "<Tab>", ">>", { desc = "普通模式Tab向右缩进当前行" })
+keymap("n", "<S-Tab>", "<<", { desc = "普通模式Shift+Tab向左缩进当前行" })
+
 -- ==================== 移动选中文本 ====================
 -- 在可视模式下移动整个选中的文本块
 -- 这在重新组织代码时非常有用
@@ -109,6 +123,48 @@ keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", { desc = "重新加载配置" 
 
 keymap("x", "<leader>p", [["_dP]], { desc = "粘贴但不影响剪贴板" })
 -- "x" = 可视块模式，"_d = 删除到黑洞寄存器，P = 粘贴到光标前
+
+-- ==================== 分屏操作快捷键 ====================
+-- 快速分屏操作，提高多文件编辑效率
+
+keymap("n", "<leader>sv", ":vsplit<CR>", { desc = "垂直分屏" })
+-- 垂直分屏：左右分割窗口
+
+keymap("n", "<leader>sh", ":split<CR>", { desc = "水平分屏" })
+-- 水平分屏：上下分割窗口
+
+keymap("n", "<leader>se", "<C-w>=", { desc = "平衡分屏大小" })
+-- 让所有分屏窗口大小相等
+
+keymap("n", "<leader>sx", ":close<CR>", { desc = "关闭当前分屏" })
+-- 关闭当前分屏窗口
+
+-- ==================== Cargo 操作快捷键 ====================
+-- Rust项目常用的cargo命令快捷键
+
+keymap("n", "<leader>cb", ":!cargo build<CR>", { desc = "Cargo 构建项目" })
+-- 编译当前Rust项目
+
+keymap("n", "<leader>cr", ":!cargo run<CR>", { desc = "Cargo 运行项目" })
+-- 运行当前Rust项目
+
+keymap("n", "<leader>ct", ":!cargo test<CR>", { desc = "Cargo 运行测试" })
+-- 运行项目测试
+
+keymap("n", "<leader>cc", ":!cargo check<CR>", { desc = "Cargo 检查代码" })
+-- 快速检查代码，不生成可执行文件
+
+keymap("n", "<leader>cf", ":!cargo fmt<CR>", { desc = "Cargo 格式化代码" })
+-- 格式化Rust代码
+
+keymap("n", "<leader>cl", ":!cargo clippy<CR>", { desc = "Cargo 代码检查" })
+-- 使用clippy进行代码质量检查
+
+keymap("n", "<leader>cu", ":!cargo update<CR>", { desc = "Cargo 更新依赖" })
+-- 更新项目依赖
+
+keymap("n", "<leader>cd", ":!cargo doc --open<CR>", { desc = "Cargo 生成并打开文档" })
+-- 生成文档并在浏览器中打开
 
 -- ==================== 行操作快捷键 ====================
 -- 快速操作整行

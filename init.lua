@@ -2,11 +2,11 @@
 -- 设置 leader 键为空格键
 -- leader 键是一个前缀键，用于触发自定义快捷键组合
 -- 例如：<leader>w 实际上就是 空格+w
-vim.g.mapleader = ";"  
+vim.g.mapleader = " "  
 
 -- 设置本地 leader 键为空格键  
 -- 本地 leader 用于特定文件类型的快捷键
-vim.g.maplocalleader = ";"  
+vim.g.maplocalleader = " "  
 
 -- ==================== 加载配置模块 ====================
 -- 加载基础选项配置文件 lua/options.lua

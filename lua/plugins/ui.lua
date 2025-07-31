@@ -121,4 +121,95 @@ return {
             })
         end,
     },
+
+    -- ==================== 缓冲区标签栏插件 ====================
+    {
+        -- 顶部文件标签栏，类似IDE的文件标签
+        "akinsho/bufferline.nvim",
+        
+        -- 指定版本，确保稳定性
+        version = "*",
+        
+        -- 依赖图标插件
+        dependencies = "nvim-tree/nvim-web-devicons",
+        
+        config = function()
+            require("bufferline").setup({
+                -- ========== 全局选项 ==========
+                options = {
+                    -- 使用Neovim内置的LSP进行诊断
+                    diagnostics = "nvim_lsp",
+                    
+                    -- 诊断信息显示格式
+                    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                        local icon = level:match("error") and " " or " "
+                        return " " .. icon .. count
+                    end,
+                    
+                    -- 显示缓冲区号码
+                    numbers = "ordinal",
+                    
+                    -- 点击行为
+                    left_mouse_command = "buffer %d",      -- 左键点击切换缓冲区
+                    right_mouse_command = "bdelete! %d",   -- 右键点击关闭缓冲区
+                    middle_mouse_command = nil,            -- 禁用中键
+                    
+                    -- 分隔符样式
+                    separator_style = "slant",             -- 可选: "slant", "padded_slant", "slope", "padded_slope", "thick", "thin"
+                    
+                    -- 始终显示缓冲区标签栏
+                    always_show_bufferline = true,
+                    
+                    -- 显示关闭按钮
+                    show_close_icon = false,               -- 全局关闭按钮
+                    show_buffer_close_icons = true,        -- 每个标签的关闭按钮
+                    
+                    -- 显示标签图标
+                    show_buffer_icons = true,
+                    
+                    -- 显示修改指示器
+                    modified_icon = "●",
+                    
+                    -- 左侧偏移量（为文件管理器留空间）
+                    offsets = {
+                        {
+                            filetype = "NvimTree",
+                            text = "文件管理器",
+                            text_align = "center",
+                            separator = true
+                        }
+                    },
+                    
+                    -- 颜色配置
+                    color_icons = true,
+                    
+                    -- 最大标签名长度
+                    max_name_length = 18,
+                    max_prefix_length = 15,
+                    tab_size = 18,
+                    
+                    -- 强制显示选项
+                    enforce_regular_tabs = false,
+                    view = "multiwindow",
+                    
+                    -- 自定义过滤器（隐藏某些类型的缓冲区）
+                    custom_filter = function(buf_number, buf_numbers)
+                        -- 过滤掉临时文件和特殊缓冲区
+                        if vim.bo[buf_number].filetype ~= "oil" then
+                            return true
+                        end
+                    end,
+                },
+                
+                -- ========== 高亮组配置 ==========
+                highlights = {
+                    -- 可以在此处自定义颜色，或使用主题默认颜色
+                    buffer_selected = {
+                        bold = true,
+                        italic = false,
+                    },
+                },
+            })
+        end,
+    },
 }
