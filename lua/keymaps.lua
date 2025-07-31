@@ -35,7 +35,6 @@ keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "增加窗口高度" })
 keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "减少窗口高度" })
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "减少窗口宽度" })
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "增加窗口宽度" })
-
 -- ==================== 缓冲区（文件）导航 ====================
 -- 使用 Shift+h/l 在打开的文件间切换
 -- 比使用 :bnext 和 :bprevious 命令更快捷
@@ -142,28 +141,28 @@ keymap("n", "<leader>sx", ":close<CR>", { desc = "关闭当前分屏" })
 -- ==================== Cargo 操作快捷键 ====================
 -- Rust项目常用的cargo命令快捷键
 
-keymap("n", "<leader>cb", ":!cargo build<CR>", { desc = "Cargo 构建项目" })
+keymap("n", "cargobuild", ":!cargo build<CR>", { desc = "Cargo 构建项目" })
 -- 编译当前Rust项目
 
-keymap("n", "<leader>cr", ":!cargo run<CR>", { desc = "Cargo 运行项目" })
+keymap("n", "crgorun", ":!cargo run<CR>", { desc = "Cargo 运行项目" })
 -- 运行当前Rust项目
 
-keymap("n", "<leader>ct", ":!cargo test<CR>", { desc = "Cargo 运行测试" })
+keymap("n", "cargotest", ":!cargo test<CR>", { desc = "Cargo 运行测试" })
 -- 运行项目测试
 
-keymap("n", "<leader>cc", ":!cargo check<CR>", { desc = "Cargo 检查代码" })
+keymap("n", "cargocheck", ":!cargo check<CR>", { desc = "Cargo 检查代码" })
 -- 快速检查代码，不生成可执行文件
 
-keymap("n", "<leader>cf", ":!cargo fmt<CR>", { desc = "Cargo 格式化代码" })
+keymap("n", "cargofmt", ":!cargo fmt<CR>", { desc = "Cargo 格式化代码" })
 -- 格式化Rust代码
 
-keymap("n", "<leader>cl", ":!cargo clippy<CR>", { desc = "Cargo 代码检查" })
+keymap("n", "cargoclippy", ":!cargo clippy<CR>", { desc = "Cargo 代码检查" })
 -- 使用clippy进行代码质量检查
 
-keymap("n", "<leader>cu", ":!cargo update<CR>", { desc = "Cargo 更新依赖" })
+keymap("n", "cargoupdate", ":!cargo update<CR>", { desc = "Cargo 更新依赖" })
 -- 更新项目依赖
 
-keymap("n", "<leader>cd", ":!cargo doc --open<CR>", { desc = "Cargo 生成并打开文档" })
+keymap("n", "cargodoc", ":!cargo doc --open<CR>", { desc = "Cargo 生成并打开文档" })
 -- 生成文档并在浏览器中打开
 
 -- ==================== 行操作快捷键 ====================
