@@ -130,11 +130,11 @@ return {
                 }
             })
             
-            -- 冲突解决快捷键
-            vim.keymap.set("n", "<leader>co", "<Plug>(git-conflict-ours)", { desc = "选择我们的更改" })
-            vim.keymap.set("n", "<leader>ct", "<Plug>(git-conflict-theirs)", { desc = "选择他们的更改" })
-            vim.keymap.set("n", "<leader>cb", "<Plug>(git-conflict-both)", { desc = "保留双方更改" })
-            vim.keymap.set("n", "<leader>c0", "<Plug>(git-conflict-none)", { desc = "删除双方更改" })
+            -- 冲突解决快捷键 (使用 gm 前缀避免与 cargo 快捷键冲突)
+            vim.keymap.set("n", "<leader>gmo", "<Plug>(git-conflict-ours)", { desc = "Git冲突：选择我们的更改" })
+            vim.keymap.set("n", "<leader>gmt", "<Plug>(git-conflict-theirs)", { desc = "Git冲突：选择他们的更改" })
+            vim.keymap.set("n", "<leader>gmb", "<Plug>(git-conflict-both)", { desc = "Git冲突：保留双方更改" })
+            vim.keymap.set("n", "<leader>gm0", "<Plug>(git-conflict-none)", { desc = "Git冲突：删除双方更改" })
             vim.keymap.set("n", "]x", "<Plug>(git-conflict-next-conflict)", { desc = "下一个冲突" })
             vim.keymap.set("n", "[x", "<Plug>(git-conflict-prev-conflict)", { desc = "上一个冲突" })
         end,
