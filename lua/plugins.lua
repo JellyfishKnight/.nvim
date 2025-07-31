@@ -13,7 +13,18 @@ require("lazy").setup({
     
     -- LSP配置
     require("plugins.lsp"),
+
+    -- 文件导航
+    require("plugins.navigation"),
     
+    -- Git集成
+    require("plugins.git"),
+    
+    -- 编辑增强
+    require("plugins.editing"),
+    
+    -- 终端集成
+    require("plugins.terminal"),
 }, {
     -- ==================== Lazy.nvim 全局配置 ====================
     ui = {
