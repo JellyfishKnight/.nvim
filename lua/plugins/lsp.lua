@@ -39,6 +39,8 @@ return {
                 "lua_ls",          -- Lua语言服务器
                 "pyright",         -- Python语言服务器
                 "ts_ls",        -- TypeScript/JavaScript语言服务器
+                "clangd",          -- C/C++语言服务器
+                "cmake",           -- CMake语言服务器
             },
             automatic_installation = true,
         })
@@ -306,6 +308,37 @@ return {
         lspconfig.ts_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+        })
+        
+        -- C/C++语言服务器配置 (clangd)
+        lspconfig.clangd.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--header-insertion=iwyu",
+                "--completion-style=detailed",
+                "--function-arg-placeholders",
+                "--fallback-style=llvm",
+            },
+            init_options = {
+                usePlaceholders = true,
+                completeUnimported = true,
+                clangdFileStatus = true,
+            },
+            filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        })
+        
+        -- CMake语言服务器配置
+        lspconfig.cmake.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            filetypes = { "cmake" },
+            init_options = {
+                buildDirectory = "build",
+            },
         })
     end
 }

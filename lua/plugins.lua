@@ -8,6 +8,9 @@ require("lazy").setup({
     -- UI相关插件
     require("plugins.ui"),
     
+    -- 语法解析器
+    require("plugins.treesitter"),
+    
     -- 自动补全系统
     require("plugins.completion"),
     
